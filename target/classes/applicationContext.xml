@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/jdbc 
+       http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+       http://cxf.apache.org/jaxws
+       http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<context:property-placeholder location="classpath:dbConfig.properties" />
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${driverClassName}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+	</bean>
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.cip.user.mapper" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean" />
+	</bean>
+
+	<bean id="login" class="com.cip.user.service.LoginServiceImp"></bean>
+
+	<bean id="regist" class="com.cip.user.service.RegistServiceImp"></bean>
+
+	<bean id="myPwdCallback" class="com.cip.user.service.MyPwdCallback"></bean>
+
+	<!-- wssj4服务器身份安全拦截器 -->
+	<bean id="in" class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
+		<constructor-arg>
+			<map>
+				<entry key="action" value="UsernameToken" />
+				<entry key="passwordType" value="PasswordText" />
+				<entry key="passwordCallbackRef">
+					<ref bean="myPwdCallback" />
+				</entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<jaxws:endpoint address="/loginServiceInf"
+		implementorClass="com.cip.user.service.LoginServiceInf">
+		<jaxws:inInterceptors>
+			<ref bean="in" />
+		</jaxws:inInterceptors>
+		<jaxws:implementor>
+			<ref bean="login" />
+		</jaxws:implementor>
+	</jaxws:endpoint>
+
+	<jaxws:endpoint address="/registServiceInf"
+		implementorClass="com.cip.user.service.RegistServiceInf">
+		<jaxws:implementor>
+			<ref bean="regist" />
+		</jaxws:implementor>
+	</jaxws:endpoint>
+
+</beans>

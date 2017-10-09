@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cip.user.mapper.RegistMapper">
+   <select id="checkName" parameterType="String" resultType="String">
+    select name from user where name = #{name} 
+    </select>
+    
+   <select id="checkEmail" parameterType="String" resultType="String">
+    select email from user where email = #{email} 
+    </select>
+    
+   <select id="checkUser" parameterType="String" resultType="String">
+    select uuid from user where name=#{1} and email = #{0} 
+    </select>
+
+   <update id="updatePassword" parameterType="String">
+   update user set password = #{1} where uuid = #{0}
+   </update>
+   
+   <update id="updateOldPassword" parameterType="String">
+   update user set password = #{1} where uuid = #{2} and password = #{0}
+   </update>
+
+	<insert id="insert_user" parameterType="com.cip.user.bean.User">
+		insert into user
+		(
+		uuid,
+		name,
+		password,
+		email
+		)
+		values
+		(
+		#{uuid},
+		#{name},
+		#{password},
+		#{email}
+		)
+	</insert>
+
+ <update id="activation">
+   update user set activation_time =
+   #{1} where uuid = #{0}
+   </update>
+   
+   <update id="setActivationStatus">
+   update user set status =
+   1 where uuid = #{uuid}
+   </update>
+   
+   <select id="queryUserStatus" parameterType="String" resultType="com.cip.user.bean.User">
+   select status,regist_time from user where uuid = #{uuid}
+   </select>
+
+</mapper>
