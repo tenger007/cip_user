@@ -8,5 +8,20 @@
 		select * from user where name = #{name} and
 		password = #{password}
 	</select>
+	
+	<select id="select_administrator" parameterType="com.cip.user.bean.Administrator"
+		resultType="com.cip.user.bean.Administrator">
+		select * from administrator where name = #{name} and
+		password = #{password}
+	</select>
+
+	<select id="queryAdPermissions" parameterType="String" resultType="com.cip.user.bean.Permission">
+	select * from permission where id in(select permission_id from role_permission where role_uuid=(
+	select role_uuid from administrator where uuid=#{uuid})) order by id
+	</select>
+	
+	<select id="queryAll" resultType="com.cip.user.bean.Permission">
+	select * from permission 
+	</select>
 
 </mapper>
