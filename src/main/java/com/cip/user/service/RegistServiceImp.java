@@ -12,8 +12,11 @@ public class RegistServiceImp implements RegistServiceInf {
 
 	@Override
 	public String regist(User user) {
+		if(null==userMapper.checkName(user.getName())){
 		userMapper.insert_user(user);
 		return "success";
+		}
+		return "fail";
 	}
 
 	
