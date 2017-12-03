@@ -38,6 +38,8 @@
 	<bean id="login" class="com.cip.user.service.LoginServiceImp"></bean>
 
 	<bean id="regist" class="com.cip.user.service.RegistServiceImp"></bean>
+	
+	<bean id="subscription" class="com.cip.user.service.SubscriptionServiceImp"></bean>
 
 	<bean id="myPwdCallback" class="com.cip.user.service.MyPwdCallback"></bean>
 
@@ -68,6 +70,13 @@
 		implementorClass="com.cip.user.service.RegistServiceInf">
 		<jaxws:implementor>
 			<ref bean="regist" />
+		</jaxws:implementor>
+	</jaxws:endpoint>
+	
+	<jaxws:endpoint address="/subscriptionServiceInf"
+		implementorClass="com.cip.user.service.SubscriptionServiceInf">
+		<jaxws:implementor>
+			<ref bean="subscription" />
 		</jaxws:implementor>
 	</jaxws:endpoint>
 

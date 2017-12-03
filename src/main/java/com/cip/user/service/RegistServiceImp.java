@@ -16,7 +16,9 @@ public class RegistServiceImp implements RegistServiceInf {
 		userMapper.insert_user(user);
 		return "success";
 		}
-		return "fail";
+		else{
+			return "fail";
+		}
 	}
 
 	

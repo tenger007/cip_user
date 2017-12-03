@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cip.user.mapper.SubscriptionMapper">
+ <select id="get_labelName_by_userUuid" parameterType="String" resultType="String">
+   select label from user_subscription where user_uuid = #{uuid} group by label order by order1_num
+ </select>
+	
+	<select id="get_columnName_by_labelName_userUuid" parameterType="String" resultType="String">
+	select section from user_subscription where label = #{0} and user_uuid = #{1} order by order2_num
+	</select>
+
+ <insert id="insert_into_user_script" parameterType="com.cip.user.bean.User_subscription">
+ insert into user_subscription (uuid,section,label,user_uuid,order1_num,order2_num)values
+ (#{uuid},#{section},#{label},#{user_uuid},#{order1_num},#{order2_num})
+ </insert>
+</mapper>

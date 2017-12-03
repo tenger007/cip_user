@@ -6,7 +6,7 @@
 	<select id="select_user" parameterType="com.cip.user.bean.User"
 		resultType="com.cip.user.bean.User">
 		select * from user where name = #{name} and
-		password = #{password}
+		password = #{password} and status = 1
 	</select>
 	
 	<select id="select_administrator" parameterType="com.cip.user.bean.Administrator"
