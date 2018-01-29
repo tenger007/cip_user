@@ -10,7 +10,7 @@ public class User {
   private String activation_code;
   private int status;
   private String regist_time;
-  private Date activation_time;
+  private String activation_time;
   
 public String getActivation_code() {
 	return activation_code;
@@ -30,10 +30,11 @@ public String getRegist_time() {
 public void setRegist_time(String regist_time) {
 	this.regist_time = regist_time;
 }
-public Date getActivation_time() {
+
+public String getActivation_time() {
 	return activation_time;
 }
-public void setActivation_time(Date activation_time) {
+public void setActivation_time(String activation_time) {
 	this.activation_time = activation_time;
 }
 public String getUuid() {

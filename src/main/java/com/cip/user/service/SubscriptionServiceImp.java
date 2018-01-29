@@ -2,11 +2,13 @@ package com.cip.user.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cip.user.bean.Datas;
 import com.cip.user.bean.User;
+import com.cip.user.bean.User_pay;
 import com.cip.user.bean.User_subscription;
 import com.cip.user.mapper.RegistMapper;
 import com.cip.user.mapper.SubscriptionMapper;
@@ -54,5 +56,16 @@ public class SubscriptionServiceImp implements SubscriptionServiceInf {
 			}
 			}
 		}
+
+	@Override
+	public String get_payInfo_by_userUuid_payTypeUuid(Map<String, Object> param) {
+		return subscriptionMapper.get_payInfo_by_userUuid_payTypeUuid(param);
+	}
+
+	@Override
+	public void insert_into_user_pays(List<User_pay> user_pays) {
+		subscriptionMapper.insert_into_user_pays(user_pays);
+	}
+
 	}
 

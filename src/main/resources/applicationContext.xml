@@ -40,6 +40,10 @@
 	<bean id="regist" class="com.cip.user.service.RegistServiceImp"></bean>
 	
 	<bean id="subscription" class="com.cip.user.service.SubscriptionServiceImp"></bean>
+	
+	<bean id="collection" class="com.cip.user.service.CollectionServiceImp"></bean>
+	
+	<bean id="search" class="com.cip.user.service.SearchServiceImp"></bean>
 
 	<bean id="myPwdCallback" class="com.cip.user.service.MyPwdCallback"></bean>
 
@@ -77,6 +81,20 @@
 		implementorClass="com.cip.user.service.SubscriptionServiceInf">
 		<jaxws:implementor>
 			<ref bean="subscription" />
+		</jaxws:implementor>
+	</jaxws:endpoint>
+	
+	<jaxws:endpoint address="/collectionServiceInf"
+		implementorClass="com.cip.user.service.CollectionServiceInf">
+		<jaxws:implementor>
+			<ref bean="collection" />
+		</jaxws:implementor>
+	</jaxws:endpoint>
+	
+	<jaxws:endpoint address="/searchServiceInf"
+		implementorClass="com.cip.user.service.SearchServiceInf">
+		<jaxws:implementor>
+			<ref bean="search" />
 		</jaxws:implementor>
 	</jaxws:endpoint>
 

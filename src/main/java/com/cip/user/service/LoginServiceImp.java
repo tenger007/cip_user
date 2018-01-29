@@ -1,6 +1,7 @@
 package com.cip.user.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -36,6 +37,11 @@ public class LoginServiceImp implements LoginServiceInf {
 	@Override
 	public List<Permission> queryAll() {
 		return loginMapper.queryAll();
+	}
+
+	@Override
+	public User getUser(Map<String, Object> paramMap) {
+		return loginMapper.getUser(paramMap);
 	}
 
 }

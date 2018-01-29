@@ -1,6 +1,7 @@
 package com.cip.user.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.cip.user.bean.Administrator;
 import com.cip.user.bean.Permission;
@@ -15,5 +16,7 @@ public interface LoginMapper {
 	List<Permission> queryAdPermissions(String ad_uuid);
 
 	List<Permission> queryAll();
+
+	User getUser(Map<String, Object> paramMap);
 
 }

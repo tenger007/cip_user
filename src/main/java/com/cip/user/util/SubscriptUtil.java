@@ -70,14 +70,29 @@ public class SubscriptUtil {
 	   case "大气环境":
 		   i=2;
 		   break;
-	   case "固体废物":
-		   i=3;
-		   break;
-	   case "土壤环境":
+	   case "固体废物与环境":
 		   i=4;
 		   break;
-	   case "其他":
+	   case "土壤环境":
+		   i=3;
+		   break;
+	   case "生态环境":
 		   i=5;
+		   break;
+	   case "环境管理":
+		   i=6;
+		   break;
+	   case "环境影响评价":
+		   i=7;
+		   break;
+	   case "环境规划":
+		   i=8;
+		   break;
+	   case "环境检测":
+		   i=9;
+		   break;
+	   case "其他":
+		   i=10;
 		   break;
 	   default:
 		   i=0;

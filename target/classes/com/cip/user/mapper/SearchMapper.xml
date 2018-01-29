@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cip.user.mapper.SearchMapper">
+
+<insert id="insert_into_search" parameterType="com.cip.user.bean.User_search">
+insert into user_search (uuid,user_uuid,query,type,count)
+values (#{uuid},#{user_uuid},#{query},#{type},#{count})
+</insert>
+
+<select id="query_user_search" resultType="com.cip.user.bean.User_search">
+select uuid,user_uuid,query,type,count,updatetime from user_search
+<where>
+			<if test="uuid != null">
+				and uuid = #{uuid}
+			</if>
+			<if test="user_uuid != null">
+				and user_uuid = #{user_uuid}
+			</if>
+			<if test="query != null">
+				and query = #{query}
+			</if>
+			<if test="type != null">
+				and type = #{type}
+			</if>
+			<if test="count != null">
+				and count = #{count}
+			</if>
+		</where>
+		order by updatetime desc
+		limit #{start},#{size}
+</select>
+
+<select id="query_count_user_search" resultType="int">
+select count(*) from user_search
+<where>
+			<if test="uuid != null">
+				and uuid = #{uuid}
+			</if>
+			<if test="user_uuid != null">
+				and user_uuid = #{user_uuid}
+			</if>
+			<if test="query != null">
+				and query = #{query}
+			</if>
+			<if test="type != null">
+				and type = #{type}
+			</if>
+			<if test="count != null">
+				and count = #{count}
+			</if>
+		</where>
+</select>
+
+</mapper>

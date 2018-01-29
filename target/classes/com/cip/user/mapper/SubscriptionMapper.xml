@@ -13,4 +13,18 @@
  insert into user_subscription (uuid,section,label,user_uuid,order1_num,order2_num)values
  (#{uuid},#{section},#{label},#{user_uuid},#{order1_num},#{order2_num})
  </insert>
+ 
+ <select id="get_payInfo_by_userUuid_payTypeUuid" resultType="String">
+ select uuid from user_pay where user_id = #{userUuid} and pay_type = #{type} 
+ and pay_type_uuid =#{titleUuid}
+ </select>
+ 
+ <insert id="insert_into_user_pays" parameterType="java.util.List">
+ insert into user_pay(uuid,user_id,pay_amount,pay_type,pay_type_uuid)
+ values
+ <foreach collection="list" item="item" index="index" separator=",">
+		(#{item.uuid}, #{item.user_id}, #{item.pay_amount}, #{item.pay_type}, #{item.pay_type_uuid})
+</foreach>
+ </insert>
+ 
 </mapper>

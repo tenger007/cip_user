@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cip.user.mapper.CollectionMapper">
+ 
+ <insert id="insert_into_collection" parameterType="com.cip.user.bean.User_collection">
+ insert into user_collection(uuid,user_uuid,type,article_uuid,title)
+ values (#{uuid},#{user_uuid},#{type},#{article_uuid},#{title})
+ </insert>
+ 
+ <select id="get_all_collection_by_userUuid" resultType="com.cip.user.bean.User_collection">
+ select title,type,article_uuid,updatetime from user_collection where user_uuid = #{0} order by updatetime desc
+ limit #{1},#{2}
+ </select>
+ 
+ <select id="get_count_coolection_by_userUuid" resultType="int" parameterType="String">
+ select count(uuid) from user_collection where user_uuid = #{0}
+ </select>
+ 
+ <delete id="delete_collection_by_userUuid_articleUuid" parameterType="String">
+ delete from user_collection where user_uuid=#{0} and article_uuid = #{1}
+ </delete>
+ 
+ <select id="query_uuid_by_userUuid_articleUuid" parameterType="String" resultType="String">
+ select uuid from user_collection where user_uuid=#{0} and article_uuid = #{1}
+ </select>
+</mapper>

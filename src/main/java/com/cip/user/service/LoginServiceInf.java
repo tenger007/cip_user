@@ -1,6 +1,7 @@
 package com.cip.user.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.jws.WebService;
 
@@ -22,4 +23,7 @@ public interface LoginServiceInf {
 	
 	//查询所有的权限
 	List<Permission> queryAll();
+	
+	//查找用户
+	User getUser(Map<String, Object> paramMap);
 }
