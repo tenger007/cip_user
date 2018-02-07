@@ -5,21 +5,21 @@ public class SubscriptUtil {
 	   int i = 0;
 	   switch (sectionName) {
 	case "图书":
-		i=1;
-		break;
-	case "课件":
 		i=2;
 		break;
-	case "案例":
+	case "课件":
 		i=3;
 		break;
-	case "图片":
+	case "案例":
 		i=4;
 		break;
-	case "新闻资讯":
+	case "图片":
 		i=5;
 		break;
-	case "科普专题":
+	case "新闻资讯":
+		i=1;
+		break;
+	/*case "科普专题":
 		i=6;
 		break;
 	case "培训材料":
@@ -54,7 +54,7 @@ public class SubscriptUtil {
 		break;
 	case "视频":
 		i=17;
-		break;
+		break;*/
 	default:
 		i=0;
 		break;
@@ -71,12 +71,12 @@ public class SubscriptUtil {
 		   i=2;
 		   break;
 	   case "固体废物与环境":
-		   i=4;
-		   break;
-	   case "土壤环境":
 		   i=3;
 		   break;
-	   case "生态环境":
+	   case "土壤环境":
+		   i=4;
+		   break;
+	  /* case "生态环境":
 		   i=5;
 		   break;
 	   case "环境管理":
@@ -90,9 +90,9 @@ public class SubscriptUtil {
 		   break;
 	   case "环境检测":
 		   i=9;
-		   break;
+		   break;*/
 	   case "其他":
-		   i=10;
+		   i=5;
 		   break;
 	   default:
 		   i=0;
